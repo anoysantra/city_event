@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sections for {{ classes.class_name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .section-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Sections for {{ classes.class_name }}</h2>
+    <ul>
+        {% for s in section %}
+        <li>
+            <div class="section-item">
+                <h3>{{ s.section_name }}</h3>
+                <!-- Add links for updating and deleting a section -->
+                <a href="{% url 'section_update' classes.class_name s.section_name %}" class="btn btn-edit">Update</a>
+                <a href="{% url 'section_delete' classes.class_name s.section_name %}" class="btn btn-delete">Delete</a>
+            </div>
+        </li>
+        {% empty %}
+        <li>No sections available.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
+
